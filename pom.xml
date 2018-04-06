@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>ar.com.kfgodel</groupId>
+    <artifactId>java-pom</artifactId>
+    <version>0.1-SNAPSHOT</version>
+  </parent>
+
+  <groupId>ar.com.kfgodel</groupId>
+  <artifactId>buxfer-api-client</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <name>Buxfer API Client</name>
+  <description>Java client to access buxfer.com http API</description>
+
+
+  <scm>
+    <url>https://github.com/kfgodel/buxfer-api-client</url>
+    <connection>scm:git:ssh://git@github.com:kfgodel/buxfer-api-client.git</connection>
+    <developerConnection>${project.scm.connection}</developerConnection>
+  </scm>
+
+  <properties>
+    <version.slf4j>1.7.6</version.slf4j>
+    <version.logback>1.1.1</version.logback>
+    <version.vertx>3.5.1</version.vertx>
+    <version.retrofit>2.4.0</version.retrofit>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>kfgodel_mosquito</id>
+      <name>Repo Mosquito</name>
+      <url>http://kfgodel.info:8081/nexus/content/groups/public/</url>
+    </repository>
+  </repositories>
+
+
+  <dependencies>
+
+    <!-- Allows annotations on interface for client definition -->
+    <dependency>
+      <groupId>com.squareup.retrofit2</groupId>
+      <artifactId>retrofit</artifactId>
+      <version>${version.retrofit}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.retrofit2</groupId>
+      <artifactId>converter-jackson</artifactId>
+      <version>${version.retrofit}</version>
+    </dependency>
+
+    <!-- logueo -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${version.slf4j}</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${version.logback}</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>${version.logback}</version>
+    </dependency>
+
+    <!-- n-arity for api -->
+    <dependency>
+      <groupId>ar.com.kfgodel</groupId>
+      <artifactId>nary</artifactId>
+    </dependency>
+
+    <!-- Rspec like testing -->
+    <dependency>
+      <groupId>ar.com.dgarcia</groupId>
+      <artifactId>java-spec</artifactId>
+    </dependency>
+
+  </dependencies>
+
+</project>

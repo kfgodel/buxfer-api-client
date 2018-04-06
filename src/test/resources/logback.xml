@@ -1,0 +1,28 @@
+<configuration debug="false">
+
+  <!--
+    Este archivo define la configuración del logueo de la aplicación y es interpretado por logback,
+    que recibe las llamadas de logueo del resto de las apis (log4j, commons-logging, etc) a través
+    de slf4j que hace de wrapper del resto.
+    La sintaxis para los appenders que se pueden agregar está en: http://logback.qos.ch/manual/appenders.html
+    y la sintaxis para los patrones de formateo en: http://logback.qos.ch/manual/layouts.html#conversionWord
+   -->
+
+  <!-- Output normal por consola -->
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>[%-23d{ISO8601}] %-5p [%X{currentUsername}] %-120m | %-40c | [%t] | at %C\(%F:%L\) Running:\(%12r\)%n
+      </pattern>
+    </encoder>
+  </appender>
+
+  <!-- Queremos debug del setup de la app -->
+  <logger name="ar.com.kfgodel.buxfer.client" level="DEBUG"/>
+
+
+  <root level="INFO">
+    <!-- En producción no excribimos en el out -->
+    <appender-ref ref="STDOUT"/>
+  </root>
+
+</configuration>
