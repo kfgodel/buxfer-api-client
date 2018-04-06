@@ -1,20 +1,15 @@
 package ar.com.kfgodel.buxfer.client.api.login;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import ar.com.kfgodel.buxfer.client.api.support.ResponseSupport;
 
 /**
  * This is the response from a login attempt
  * {"token":"74m0koj971ir50dbjhgmrg2vt1","status":"OK","request_id":1522981754}
  * Date: 05/04/18 - 23:30
  */
-public class LoginResponse {
+public class LoginResponse extends ResponseSupport {
 
   private String token;
-
-  private String status;
-
-  @JsonProperty("request_id")
-  private String requestId;
 
   public String getToken() {
     return token;
@@ -24,19 +19,4 @@ public class LoginResponse {
     this.token = token;
   }
 
-  public String getStatus() {
-    return status;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-  public String getRequestId() {
-    return requestId;
-  }
-
-  public void setRequestId(String requestId) {
-    this.requestId = requestId;
-  }
 }
