@@ -16,9 +16,9 @@ public class Transaction {
   private TransactionType type;
   private TransactionType transactionType;
   private Double amount;
-  private Double expenseAmount;
-  private Long accountId;
-  private String accountName;
+  private Double expenseAmount; // negative for income
+  private Long accountId;// 0 means no account
+  private String accountName; // null for no account
   private String tags;
   private List<String> tagNames;
   private String status;
