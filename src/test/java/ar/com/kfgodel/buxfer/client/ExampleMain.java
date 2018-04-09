@@ -1,10 +1,9 @@
 package ar.com.kfgodel.buxfer.client;
 
-import ar.com.kfgodel.buxfer.client.api.BuxferApiClient;
 import ar.com.kfgodel.buxfer.client.api.login.LoginResponse;
 import ar.com.kfgodel.buxfer.client.api.transactions.Transaction;
 import ar.com.kfgodel.buxfer.client.api.transactions.TransactionsResponse;
-import ar.com.kfgodel.buxfer.client.impl.BuxferRetrofitClient;
+import ar.com.kfgodel.buxfer.client.impl.BareApiClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,13 +23,13 @@ public class ExampleMain {
       return;
     }
     LOG.info("Trying to log in");
-    BuxferApiClient apiClient = BuxferRetrofitClient.create();
-    LoginResponse loginResponse = apiClient.login(args[0], args[1]).execute().body().getResponse();
+    BareApiClient client = BareApiClient.create();
+    LoginResponse loginResponse = client.login(args[0], args[1]);
     String sessionToken = loginResponse.getToken();
     LOG.info("Got token: {} on request: {}", sessionToken, loginResponse.getRequestId());
 
     LOG.info("Accessing transactions");
-    TransactionsResponse transactionsResponse = apiClient.transactions(0, sessionToken).execute().body().getResponse();
+    TransactionsResponse transactionsResponse = client.transactions(0, sessionToken);
     List<Transaction> transactions = transactionsResponse.getTransactions();
     LOG.info("Found {} transactions, showing {}", transactionsResponse.getNumTransactions(), transactions.size());
     for (Transaction transaction : transactions) {
