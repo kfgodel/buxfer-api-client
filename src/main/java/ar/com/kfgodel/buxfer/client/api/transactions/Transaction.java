@@ -1,6 +1,8 @@
 package ar.com.kfgodel.buxfer.client.api.transactions;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.MoreObjects;
 
 import java.util.List;
 
@@ -10,9 +12,15 @@ import java.util.List;
  */
 public class Transaction {
   private Long id;
+  public static final String id_FIELD = "id";
+
   private String description;
+  public static final String description_FIELD = "description";
+
   private String date;
   private String normalizedDate;
+  public static final String normalizedDate_FIELD = "normalizedDate";
+
   private TransactionType type;
   private TransactionType transactionType;
   private Double amount;
@@ -132,6 +140,11 @@ public class Transaction {
     this.status = status;
   }
 
+  @JsonIgnore
+  public boolean isPastDated(){
+    return !getIsFutureDated();
+  }
+
   public Boolean getIsFutureDated() {
     return isFutureDated;
   }
@@ -154,5 +167,14 @@ public class Transaction {
 
   public void setToAccount(AccountReference toAccount) {
     this.toAccount = toAccount;
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+      .add(id_FIELD, id)
+      .add(normalizedDate_FIELD, normalizedDate)
+      .add(description_FIELD, description)
+      .toString();
   }
 }
