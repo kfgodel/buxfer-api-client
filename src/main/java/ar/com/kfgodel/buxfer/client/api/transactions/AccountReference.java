@@ -27,4 +27,12 @@ public class AccountReference {
   public void setName(String name) {
     this.name = name;
   }
+
+  public static AccountReference create(Long accountId, String accountName) {
+    AccountReference account = new AccountReference();
+    account.id = accountId;
+    account.name = accountName;
+    return account;
+  }
+
 }

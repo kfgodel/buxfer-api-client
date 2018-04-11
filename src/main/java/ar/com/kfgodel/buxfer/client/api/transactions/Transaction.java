@@ -21,8 +21,8 @@ public class Transaction {
   private String normalizedDate;
   public static final String normalizedDate_FIELD = "normalizedDate";
 
-  private TransactionType type;
-  private TransactionType transactionType;
+  private String type;
+  private String transactionType;
   private Double amount;
   private Double expenseAmount; // negative for income
   private Long accountId;// 0 means no account
@@ -68,19 +68,19 @@ public class Transaction {
     this.normalizedDate = normalizedDate;
   }
 
-  public TransactionType getType() {
+  public String getType() {
     return type;
   }
 
-  public void setType(TransactionType type) {
+  public void setType(String type) {
     this.type = type;
   }
 
-  public TransactionType getTransactionType() {
+  public String getTransactionType() {
     return transactionType;
   }
 
-  public void setTransactionType(TransactionType transactionType) {
+  public void setTransactionType(String transactionType) {
     this.transactionType = transactionType;
   }
 
