@@ -42,12 +42,12 @@ public class AccountReference implements Comparable<AccountReference> {
     if (this == o) return true;
     if (!(o instanceof AccountReference)) return false;
     AccountReference that = (AccountReference) o;
-    return Objects.equals(getId(), that.getId());
+    return Objects.equals(getName(), that.getName());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(getId());
+    return Objects.hash(getName());
   }
 
   @Override
@@ -67,6 +67,6 @@ public class AccountReference implements Comparable<AccountReference> {
 
   @Override
   public int compareTo(AccountReference o) {
-    return Objects.compare(this.getId(), o.getId(), Comparator.naturalOrder());
+    return Objects.compare(this.getName(), o.getName(), Comparator.naturalOrder());
   }
 }
