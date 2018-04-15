@@ -1,5 +1,10 @@
 package ar.com.kfgodel.buxfer.client.api.transactions;
 
+import com.google.common.base.MoreObjects;
+
+import java.util.Comparator;
+import java.util.Objects;
+
 /**
  * An account reference used from a transaction.<br>
  *   {
@@ -8,9 +13,13 @@ package ar.com.kfgodel.buxfer.client.api.transactions;
  *   }
  * Date: 06/04/18 - 00:00
  */
-public class AccountReference {
+public class AccountReference implements Comparable<AccountReference> {
   private Long id;
+  public static final String id_FIELD = "id";
+
   private String name;
+  public static final String name_FIELD = "name";
+
 
   public Long getId() {
     return id;
@@ -28,6 +37,27 @@ public class AccountReference {
     this.name = name;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof AccountReference)) return false;
+    AccountReference that = (AccountReference) o;
+    return Objects.equals(getId(), that.getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getId());
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+      .add(id_FIELD, id)
+      .add(name_FIELD, name)
+      .toString();
+  }
+
   public static AccountReference create(Long accountId, String accountName) {
     AccountReference account = new AccountReference();
     account.id = accountId;
@@ -35,4 +65,8 @@ public class AccountReference {
     return account;
   }
 
+  @Override
+  public int compareTo(AccountReference o) {
+    return Objects.compare(this.getId(), o.getId(), Comparator.naturalOrder());
+  }
 }
