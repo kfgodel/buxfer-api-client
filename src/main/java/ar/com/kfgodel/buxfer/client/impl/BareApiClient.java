@@ -8,6 +8,7 @@ import ar.com.kfgodel.buxfer.client.api.transactions.TransactionsResponse;
 import ar.com.kfgodel.buxfer.client.api.transactions.TransactionsWrapper;
 import ar.com.kfgodel.buxfer.client.impl.retrofit.BuxferApi;
 import retrofit2.Call;
+import retrofit2.Response;
 
 import java.io.IOException;
 
@@ -36,15 +37,20 @@ public class BareApiClient implements BuxferApiClient {
   @Override
   public TransactionsResponse transactions(int pageIndex, String sessionToken) {
     Call<TransactionsWrapper> call = api.transactions(pageIndex, sessionToken);
-    return executeCall(call).getResponse();
+    TransactionsWrapper transactionsWrapper = executeCall(call);
+    return transactionsWrapper.getResponse();
   }
 
   private <T> T executeCall(Call<T> call){
     try {
-      T responseBody = call.execute().body();
+      Thread.sleep(1000);
+      Response<T> response = call.execute();
+      T responseBody = response.body();
       return responseBody;
     } catch (IOException e) {
       throw new BuxferApiException("Failed to call buxfer endpoint: " + e.getMessage(),e);
+    } catch (InterruptedException e) {
+      throw new BuxferApiException("Failed to wait before calling endpoint: " + e.getMessage(),e);
     }
   }
 }
