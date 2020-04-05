@@ -35,6 +35,11 @@ public class Transaction {
   private AccountReference fromAccount;
   private AccountReference toAccount;
 
+  public boolean esAnteriorA(String fechaDeCorteNormalizada) {
+    // Aunque comparamos strings, como están en formato iso, siguen la misma relacion de orden
+    return this.getNormalizedDate().compareTo(fechaDeCorteNormalizada) < 0;
+  }
+
 
   public Long getId() {
     return id;
